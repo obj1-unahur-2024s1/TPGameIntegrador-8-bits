@@ -25,14 +25,14 @@ Con la tecla **(i)** podrán acceder a las Instrucciones e intercambiar entre la
 Para una información más detallada abra: [INSTRUCCIONES](INSTRUCCIONES.md)
 
 ## Capturas
-<img src="screenshoots/screenshot1.png" alt="Captura de pantalla" width="300">
-<img src="screenshoots/screenshot2.png" alt="Captura de pantalla" width="300">
-<img src="screenshoots/screenshot3.png" alt="Captura de pantalla" width="300">
-<img src="screenshoots/screenshot4.png" alt="Captura de pantalla" width="300">
-<img src="screenshoots/screenshot5.png" alt="Captura de pantalla" width="300">
-<img src="screenshoots/screenshot6.png" alt="Captura de pantalla" width="300">
-<img src="screenshoots/screenshot7.png" alt="Captura de pantalla" width="300">
-<img src="screenshoots/screenshot8.png" alt="Captura de pantalla" width="300">
+<img src="screenshots/screenshot1.png" alt="Captura de pantalla" width="300">
+<img src="screenshots/screenshot2.png" alt="Captura de pantalla" width="300">
+<img src="screenshots/screenshot3.png" alt="Captura de pantalla" width="300">
+<img src="screenshots/screenshot4.png" alt="Captura de pantalla" width="300">
+<img src="screenshots/screenshot5.png" alt="Captura de pantalla" width="300">
+<img src="screenshots/screenshot6.png" alt="Captura de pantalla" width="300">
+<img src="screenshots/screenshot7.png" alt="Captura de pantalla" width="300">
+<img src="screenshots/screenshot8.png" alt="Captura de pantalla" width="300">
 
 ## Características
 
