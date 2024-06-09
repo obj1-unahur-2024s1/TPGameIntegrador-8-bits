@@ -75,12 +75,12 @@ object teclado{
 					game.schedule(1500,{ dineroInsuficiente.removeVisual() })
 				}
 				//Valida si el dueño de la ubicación actual es dueño de la region completa
-				else if (currentRegion.all({p => p.titular() == juego.playerOnTurn().currentLocation().titular()})){
+				else if (!juego.playerOnTurn().currentLocation().esDelBanco() and
+					currentRegion.all({p => p.titular() == juego.playerOnTurn().currentLocation().titular()})){
 					const terrateniente = new Popup(img="popups/terrateniente.png",position=game.at(1,2))
 					terrateniente.addVisual()
 					game.schedule(2000,{ terrateniente.removeVisual() })
-				}
-								
+				}	
 				else if (!jugadores.isEmpty() and
 						!juego.playerOnTurn().currentLocation().esDelBanco() and
 						!juego.playerOnTurn().mePertenece(juego.playerOnTurn().currentLocation())){

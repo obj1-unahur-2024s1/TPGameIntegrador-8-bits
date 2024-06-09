@@ -5,7 +5,7 @@ import propiedades.*
 
 
 class Dado inherits Visual{
-	const property valor = 1//[1,2,3,4,5,6].anyOne()
+	const property valor = [1,2,3,4,5,6].anyOne()
 	
 	override method position() = game.at(4,1)
 	override method image() = "dados/dado" + valor.toString() + ".png"
