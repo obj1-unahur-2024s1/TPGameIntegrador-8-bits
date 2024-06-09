@@ -5,7 +5,8 @@
 - Las provincias tienen un valor de $400.
 - Los trenes tienen un valor de $1000.
 - Comprarle una propiedad a otro jugador
-cuesta 150% de su valor original.
+cuesta 150% de su valor original. (No podrá
+comprarsela si el titular es dueño de toda la Región).
 - Al pasar por la Salida cobra $500. Si caes
 en este casillero cobras doble.
 - Cuando un jugador cae en una propiedad de

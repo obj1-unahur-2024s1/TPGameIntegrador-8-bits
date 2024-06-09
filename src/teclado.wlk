@@ -2,6 +2,7 @@ import wollok.game.*
 import juego.*
 import pantalla.*
 import jugadores.*
+import tablero.*
 
 
 object teclado{
@@ -64,12 +65,22 @@ object teclado{
 		
 		//Comprar propiedad a otro jugador
 		keyboard.t().onPressDo{
+			//Retorna la región actual
+			const currentRegion = regiones.filter({ r => r.contains(juego.playerOnTurn().currentLocation())}).uniqueElement()
+			
 			if (juego.partidaIniciada() and !juego.playerOnTurn().currentLocation().esCasilleroEspecial()){ //Valida que no sea casillero especial
 				if (juego.playerOnTurn().dinero() < juego.playerOnTurn().currentLocation().costo()*1.5){
 					const dineroInsuficiente = new Popup(img="popups/dineroInsuficiente.png",position=game.at(1,2))
 					dineroInsuficiente.addVisual()
 					game.schedule(1500,{ dineroInsuficiente.removeVisual() })
 				}
+				//Valida si el dueño de la ubicación actual es dueño de la region completa
+				else if (currentRegion.all({p => p.titular() == juego.playerOnTurn().currentLocation().titular()})){
+					const terrateniente = new Popup(img="popups/terrateniente.png",position=game.at(1,2))
+					terrateniente.addVisual()
+					game.schedule(2000,{ terrateniente.removeVisual() })
+				}
+								
 				else if (!jugadores.isEmpty() and
 						!juego.playerOnTurn().currentLocation().esDelBanco() and
 						!juego.playerOnTurn().mePertenece(juego.playerOnTurn().currentLocation())){
