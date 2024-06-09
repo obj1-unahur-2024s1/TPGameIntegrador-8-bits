@@ -64,7 +64,7 @@ object teclado{
 		
 		//Comprar propiedad a otro jugador
 		keyboard.t().onPressDo{
-			if (!juego.playerOnTurn().currentLocation().esCasilleroEspecial()){ //Valida que no sea casillero especial
+			if (juego.partidaIniciada() and !juego.playerOnTurn().currentLocation().esCasilleroEspecial()){ //Valida que no sea casillero especial
 				if (juego.playerOnTurn().dinero() < juego.playerOnTurn().currentLocation().costo()*1.5){
 					const dineroInsuficiente = new Popup(img="popups/dineroInsuficiente.png",position=game.at(1,2))
 					dineroInsuficiente.addVisual()
