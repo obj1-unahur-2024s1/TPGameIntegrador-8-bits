@@ -57,9 +57,5 @@ Tu solicitud de extracción será revisada y, si es aceptada, se fusionará con 
 
 ### Proyecto final de la materia **Programación orientada a objetos I**, de la **Universidad Nacional de Hurlingham** (UNAHUR)
 
-## Licencia
-
-Este proyecto se distribuye bajo la Licencia MIT. Puedes consultar el archivo [LICENSE](https://opensource.org/license/MIT) para obtener más información sobre los derechos y limitaciones de uso del juego.
-
 
 ¡Esperamos que disfrutes del Argentopolis!
