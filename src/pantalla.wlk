@@ -21,7 +21,7 @@ class Visual{
 
 }
 
-class Fondo inherits Visual{ // Clase abstracta
+class Fondo inherits Visual{
 }
 
 class Popup inherits Visual{

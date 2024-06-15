@@ -72,14 +72,6 @@ class Player{
 		game.sound("sounds/paso.mp3").play()
 	}
 	
-	/*NUNCA LO USE
-	method retrocederCasilleros(cant){
-		position = if (position.y() == 0 and position.x() < 8) position.right(cant)
-		else if (position.x() == 0 and position.y() > 0) position.down(cant)
-		else if (position.y() == game.height()-1 and position.x() < game.width()-1) position.left(cant)
-		else position.up(cant)
-	}*/
-	
 	//Propiedad en la ubicacion del jugador actual (SE PODRA CON FILTER?)
 	method currentLocation() = game.getObjectsIn(juego.playerOnTurn().position()).first()
 	

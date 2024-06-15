@@ -53,7 +53,6 @@ object juego{
 		
 		soundMenu.shouldLoop(true)
 		game.schedule(500, { soundMenu.play()} )
-//		game.schedule(501, { soundMenu.pause()} ) //AGREGADO DURANTE EL DESARROLLO PARA NO ESCUCHAR LA CANCION
 		
 		//Pantalla principal
 		startMenu.addVisual()
