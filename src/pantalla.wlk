@@ -76,10 +76,10 @@ class IndicadorJugador inherits Animation{
 
 class WinScreen inherits Animation{
 	var ganador =
-		if (jugadores.size()>1){
-			jugadores.filter({ j => j.deuda() == 0 }).max({ j => j.dinero()})
+		if (juego.jugadores().size()>1){
+			juego.jugadores().filter({ j => j.deuda() == 0 }).max({ j => j.dinero()})
 		}else{
-			jugadores.first()}
+			juego.jugadores().first()}
 	
 	override method image() = "fondos/victoria-" + self.ganador().nombre() + "-" + frame.toString() + ".png"
 

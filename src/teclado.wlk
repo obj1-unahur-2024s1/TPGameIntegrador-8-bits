@@ -10,56 +10,61 @@ object teclado{
 	method configuracion(){
 		//Movimientos de Selector
 		keyboard.up().onPressDo{if (!juego.partidaIniciada())
-			selector.moveUp()}
+			tablero.selector().moveUp()}
 		keyboard.down().onPressDo{if (!juego.partidaIniciada())
-			selector.moveDown()}
+			tablero.selector().moveDown()}
 	
 		//Empezar partida (Selecciona cantidad de jugadores, elimina Start Menu y genera el tablero)
 		keyboard.enter().onPressDo{
-			if (!juego.partidaIniciada() and selector.position().y() == 8){
+		const player1 = new Player(img = "registros/jugador1.png", nombre="player1",numero=1)
+		const player2 = new Player(img = "registros/jugador2.png", nombre="player2",numero=2)
+		const player3 = new Player(img = "registros/jugador3.png", nombre="player3",numero=3)
+		const player4 = new Player(img = "registros/jugador4.png", nombre="player4",numero=4)
+		
+			if (!juego.partidaIniciada() and tablero.selector().position().y() == 8){
 				juego.iniciarPartida([player1,player2])
 			}
-			else if (!juego.partidaIniciada() and selector.position().y() == 7){
+			else if (!juego.partidaIniciada() and tablero.selector().position().y() == 7){
 				juego.iniciarPartida([player1,player2,player3])
 			}
-			else if (!juego.partidaIniciada() and selector.position().y() == 6){
+			else if (!juego.partidaIniciada() and tablero.selector().position().y() == 6){
 				juego.iniciarPartida([player1,player2,player3,player4])
 			}
 		}
 		
 		//Mostrar instrucciones
 		keyboard.i().onPressDo{
-			if (!game.hasVisual(instrucciones1) and
-				!game.hasVisual(instrucciones2) and
-				!game.hasVisual(teclas)
-			){game.addVisual(instrucciones1)}
-			else if(game.hasVisual(instrucciones1)){
-				game.removeVisual(instrucciones1)
-			}else if(game.hasVisual(instrucciones2)){
-				game.removeVisual(instrucciones2)
-			}else {game.removeVisual(teclas)}
+			if (!game.hasVisual(tablero.instrucciones1()) and
+				!game.hasVisual(tablero.instrucciones2()) and
+				!game.hasVisual(tablero.teclas())
+			){game.addVisual(tablero.instrucciones1())}
+			else if(game.hasVisual(tablero.instrucciones1())){
+				game.removeVisual(tablero.instrucciones1())
+			}else if(game.hasVisual(tablero.instrucciones2())){
+				game.removeVisual(tablero.instrucciones2())
+			}else {game.removeVisual(tablero.teclas())}
 		}
 		
 		keyboard.right().onPressDo{
-			if (game.hasVisual(instrucciones1)){
-				game.removeVisual(instrucciones1)
-				game.addVisual(instrucciones2)}
-			else if (game.hasVisual(instrucciones2)){
-				game.removeVisual(instrucciones2)
-				game.addVisual(teclas)}
+			if (game.hasVisual(tablero.instrucciones1())){
+				game.removeVisual(tablero.instrucciones1())
+				game.addVisual(tablero.instrucciones2())}
+			else if (game.hasVisual(tablero.instrucciones2())){
+				game.removeVisual(tablero.instrucciones2())
+				game.addVisual(tablero.teclas())}
 		}
 		keyboard.left().onPressDo{
-			if (game.hasVisual(teclas)){
-				game.removeVisual(teclas)
-				game.addVisual(instrucciones2)}
-			else if (game.hasVisual(instrucciones2)){
-				game.removeVisual(instrucciones2)
-				game.addVisual(instrucciones1)}
+			if (game.hasVisual(tablero.teclas())){
+				game.removeVisual(tablero.teclas())
+				game.addVisual(tablero.instrucciones2())}
+			else if (game.hasVisual(tablero.instrucciones2())){
+				game.removeVisual(tablero.instrucciones2())
+				game.addVisual(tablero.instrucciones1())}
 		}
 		
 		//Tirar dados
 		keyboard.space().onPressDo{
-			if (!jugadores.isEmpty() and juego.popupEnPantalla().isEmpty()){
+			if (!juego.jugadores().isEmpty() and juego.popupEnPantalla().isEmpty()){
 				juego.playerOnTurn().tirarDados()}
 			}
 		
@@ -81,7 +86,7 @@ object teclado{
 					terrateniente.addVisual()
 					game.schedule(2000,{ terrateniente.removeVisual() })
 				}	
-				else if (!jugadores.isEmpty() and
+				else if (!juego.jugadores().isEmpty() and
 						!juego.playerOnTurn().currentLocation().esDelBanco() and
 						!juego.playerOnTurn().mePertenece(juego.playerOnTurn().currentLocation())){
 					juego.playerOnTurn().transferencia()
@@ -91,11 +96,11 @@ object teclado{
 
 		//Pedir Prestamo y Pagar Deudas
 		keyboard.o().onPressDo{
-			if (!jugadores.isEmpty() and juego.popupEnPantalla().isEmpty()){
+			if (!juego.jugadores().isEmpty() and juego.popupEnPantalla().isEmpty()){
 				juego.playerOnTurn().pedirPrestamo()}
 		}
 		keyboard.p().onPressDo{
-			if (!jugadores.isEmpty() and juego.popupEnPantalla().isEmpty() and juego.playerOnTurn().deuda() > 0){
+			if (!juego.jugadores().isEmpty() and juego.popupEnPantalla().isEmpty() and juego.playerOnTurn().deuda() > 0){
 				if (juego.playerOnTurn().debeFianza()) juego.playerOnTurn().pagarFianza()
 				else juego.playerOnTurn().pagarDeudas()}
 		}

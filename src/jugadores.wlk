@@ -29,7 +29,7 @@ class Player{
 	method mePertenece(unaPropiedad) = unaPropiedad.titular() == self
 	method cobrarSalario(){
 	//Valida que al pasar por la salida cobren sólo después de que alguno compro una propiedad		
-		if(jugadores.any( { jugador => !jugador.misPropiedades().isEmpty() } )){
+		if(juego.jugadores().any( { jugador => !jugador.misPropiedades().isEmpty() } )){
 			self.cobrar(500)
 			game.sound("sounds/register.mp3").play()
 			const sueldoAnimation = new DineroModifier(img="mas500-")
@@ -114,7 +114,7 @@ class Player{
 			self.confirmar(unaPropiedad)
 			confirmarCompra.removeVisual()
 			//Crea una animacion de descuento del dinero segun compra
-			dineroAnimation.comprarProvinciaOTren()
+			tablero.dineroAnimation().comprarProvinciaOTren()
 			}
 		}keyboard.n().onPressDo{confirmarCompra.removeVisual()}
 	}
@@ -143,7 +143,7 @@ class Player{
 				//Completa la transferencia en el siguente método
 				self.confirmarTransferencia()
 				confirmarTransferenciaPopup.removeVisual()
-				dineroAnimation.transferencia()
+				tablero.dineroAnimation().transferencia()
 				//Popup confirmando la compra
 				const compraRealizada = new Popup(img="popups/compraRealizada.png",position=game.at(1,2))
 				compraRealizada.addVisual()
@@ -306,8 +306,8 @@ class Player{
 
 //Victoria, Derrota, y Evaluación de Condición.
 	method condicionVictoriaODerrota(){
-		if( jugadores.any({ j => j.dinero() >= 5000 and j.deuda() == 0})){
-			jugadores.max({ j => j.dinero() }).victoria()			
+		if( juego.jugadores().any({ j => j.dinero() >= 5000 and j.deuda() == 0})){
+			juego.jugadores().max({ j => j.dinero() }).victoria()			
 		}else if(self.deuda() > 2000){
 			self.derrota()
 		}else{}
@@ -318,11 +318,11 @@ class Player{
 		game.clear()
 		const winner = new WinScreen(fps=500)
 		winner.addVisual()
-		game.schedule(500, { winSong.play()} )
+		game.schedule(500, { song.win().play()} )
 		game.schedule(500,{winner.animation(2)})
 		game.schedule(32500, {game.stop()})
 		//Detiene la canción de la partida
-		playingSong.stop()
+		song.partida().stop()
 	}
 
 	method derrota(){
@@ -335,10 +335,10 @@ class Player{
 		//Borra las propiedades del jugador
 		misPropiedades.clear()
 		//Asigna el turno al siguiente jugador		
-		var turno = if (juego.turnoJugadorNro() < jugadores.size()) juego.turnoJugadorNro()-1 else 0
+		var turno = if (juego.turnoJugadorNro() < juego.jugadores().size()) juego.turnoJugadorNro()-1 else 0
 		juego.turnoJugadorNro(turno)
 		//Remueve al jugador de la lista de jugadores
-		jugadores.remove(self)
+		juego.jugadores().remove(self)
 		//Elimina el jugador de la visual
 		game.schedule(2000, {game.removeVisual(self)} )
 		//Popup derrota
@@ -348,7 +348,7 @@ class Player{
 		game.schedule(3000, { game.sound("sounds/lose.mp3").play() })
 		game.schedule(7500,{ derrotado.removeVisual() })
 		//Evalua si queda un solo jugador y le da la victoria
-		game.schedule(7500, { if (jugadores.size() == 1) jugadores.first().victoria() })
+		game.schedule(7500, { if (juego.jugadores().size() == 1) juego.jugadores().first().victoria() })
 		//Dinero y Deudas en 0 (mejora visual del balance en el tablero)
 		game.schedule(8000, {self.dinero(0) self.deuda(0)})
 	}

@@ -3,6 +3,18 @@ import juego.*
 import pantalla.*
 import propiedades.*
 
+object tablero{
+	const property startMenu = new Fondo(img="fondos/startMenu.png")
+	const property selectPlayerScreen = new Animation(img="UI/seleccionarJugadores",position = game.at(0,0))
+	const property selector = new Selector(img="UI/selector.png", position=game.at(0,8))
+	const property mapaArgentina = new Fondo(position=game.at(1,1),img="fondos/argentina.png")
+	const property indicadorTurno = new IndicadorJugador(position=game.at(5,7))
+	const property instrucciones1 = new Instrucciones(img = "popups/instrucciones1.png")
+	const property instrucciones2 = new Instrucciones(img = "popups/instrucciones2.png")
+	const property teclas = new Instrucciones(img = "popups/teclas.png")
+	const property teclaInstrucciones = new Visual(position=game.at(3,1),img="UI/teclaInstrucciones.png")
+	const property dineroAnimation = new DineroModifier(img="")
+}
 
 class Dado inherits Visual{
 	const property valor = [1,2,3,4,5,6].anyOne()
@@ -27,9 +39,6 @@ object banco{
 	method cobrar(monto){dinero += monto}
 	method pagar(monto){dinero -= monto}
 }
-
-
-//Instancias de Casilleros, Regiones y Etiquetas
 
 //Provincias y Trenes
 const entreRios = new Provincia(position = game.at(7,0), img = "casilleros/entreRios.png")
@@ -82,43 +91,3 @@ const salida = new CasilleroEspecial(position = game.at(8,0),img="casilleros/sal
 const suerte =  new CasilleroEspecial(position = game.at(0,0),img="casilleros/suerte.png",tipo="Suerte")
 const carcel = new CasilleroEspecial(position = game.at(0,8),img="casilleros/carcel.png",tipo="Carcel")
 const mufa =  new CasilleroEspecial(position = game.at(8,8),img="casilleros/mufa.png",tipo="Mufa")
-
-//Etiquetas
-const labelmalvinasEntreRios = new Label(position = game.at(7,1), img = "casilleros/label-malvinasEntreRios.png")
-const labelBuenosAires = new Label(position = game.at(6,1), img = "casilleros/label-buenosAires.png")
-const labelSantaFe = new Label(position = game.at(5,1), img = "casilleros/label-santaFe.png")
-const labelSarmiento = new Label(position = game.at(4,1), img = "casilleros/label-sarmiento.png")
-const labelSantiago = new Label(position = game.at(3,1), img = "casilleros/label-santiago.png")
-const labelLaPampa = new Label(position = game.at(2,1), img = "casilleros/label-laPampa.png")
-const labelCordobaChaco = new Label(position = game.at(1,1), img = "casilleros/label-cordobaChaco.png")
-const labelCorrientes = new Label(position = game.at(1,2), img = "casilleros/label-corrientes.png")
-const labelMisiones = new Label(position = game.at(1,3), img = "casilleros/label-misiones.png")
-const labelRoca = new Label(position = game.at(1,4), img = "casilleros/label-roca.png")
-const labelFormosa = new Label(position = game.at(1,5), img = "casilleros/label-formosa.png")
-const labelJujuy = new Label(position = game.at(1,6), img = "casilleros/label-jujuy.png")
-const labelSaltaTucuman = new Label(position = game.at(1,7), img = "casilleros/label-saltaTucuman.png")
-const labelCatamarca = new Label(position = game.at(2,7), img = "casilleros/label-catamarca.png")
-const labelLaRioja = new Label(position = game.at(3,7), img = "casilleros/label-laRioja.png")
-const labelMitre = new Label(position = game.at(4,7), img = "casilleros/label-mitre.png")
-const labelSanJuan = new Label(position = game.at(5,7), img = "casilleros/label-sanJuan.png")
-const labelSanLuis = new Label(position = game.at(6,7), img = "casilleros/label-sanLuis.png")
-const labelMendozaChubut = new Label(position = game.at(7,7), img = "casilleros/label-mendozaChubut.png")
-const labelRioNegro = new Label(position = game.at(7,6), img = "casilleros/label-rioNegro.png")
-const labelNeuquen = new Label(position = game.at(7,5), img = "casilleros/label-neuquen.png")
-const labelSanMartin = new Label(position = game.at(7,4), img = "casilleros/label-sanMartin.png")
-const labelSantaCruz = new Label(position = game.at(7,3), img = "casilleros/label-santaCruz.png")
-const labelTierraDelFuego = new Label(position = game.at(7,2), img = "casilleros/label-tierraDelFuego.png")
-
-
-const casilleros =[
-	banco,salida,suerte,carcel,mufa,
-	
-	labelmalvinasEntreRios,labelBuenosAires,labelSantaFe,labelSarmiento,labelSantiago,
-	labelLaPampa,labelCordobaChaco,labelCorrientes,labelMisiones,labelRoca,labelFormosa,labelJujuy,
-	labelSaltaTucuman,labelCatamarca,labelLaRioja,labelMitre,labelSanJuan,labelSanLuis,labelMendozaChubut,
-	labelRioNegro,labelNeuquen,labelSanMartin,labelSantaCruz,labelTierraDelFuego,
-	
-	entreRios,buenosAires,santaFe,sarmiento,santiago,laPampa,cordoba,chaco,corrientes,misiones,roca,
-	formosa,jujuy,salta,tucuman,catamarca,laRioja,mitre,sanJuan,sanLuis,mendoza,chubut,rioNegro,
-	neuquen,sanMartin,santaCruz,tierraDelFuego,malvinas
-	]
