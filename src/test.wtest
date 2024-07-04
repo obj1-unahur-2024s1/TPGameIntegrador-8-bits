@@ -50,12 +50,6 @@ const player1 = new Player(img = "registros/jugador1.png", nombre="player1",nume
 		assert.notThat(sarmiento.esCasilleroEspecial())
 	}
 	
-	test "carcel es casillero especial"{
-		assert.that(carcel.esCasilleroEspecial())
-		assert.notThat(carcel.esProvincia())
-		assert.notThat(carcel.esTren())
-	}
-	
 	test "alquiler de provincia"{
 		assert.equals(200,entreRios.alquiler())
 	}

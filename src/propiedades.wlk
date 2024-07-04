@@ -6,7 +6,7 @@ import cartas.*
 
 class Casillero{ //Clase Base
 	var property position
-	var img
+	const img
 	
 	method image() = img
 	method esCasilleroEspecial() = false
@@ -36,7 +36,11 @@ class CasilleroEspecial inherits Casillero{
 	override method esCasilleroEspecial() = true
 }
 
-class Salida inherits CasilleroEspecial{
+object salida{
+	method esCasilleroEspecial() = true
+	method position() = game.at(8,0)
+	method image() = "casilleros/salida.png"
+	
 	method activarCasillero(){
 		juego.playerOnTurn().cobrarSalario()
 		const cobrasDoble = new Popup(img="popups/cobrasDoble.png",position=game.at(1,2))
