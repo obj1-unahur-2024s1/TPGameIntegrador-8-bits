@@ -40,63 +40,68 @@ object banco{
 	method pagar(monto){dinero -= monto}
 }
 
-
-const regiones = [
-	region1,region2,region3,region4,
-	region5,region6,region7,region8,
-	trenes]
+object regiones{
+	const region1 = [
+		new Provincia(position = game.at(7,0), img = "casilleros/entreRios.png"),
+		new Provincia(position = game.at(6,0), img = "casilleros/buenosAires.png"),
+		new Provincia(position = game.at(5,0), img = "casilleros/santaFe.png")
+	]
+		
+	const region2 = [
+		new Provincia(position = game.at(3,0), img = "casilleros/santiago.png"),
+		new Provincia(position = game.at(2,0), img = "casilleros/laPampa.png"),
+		new Provincia(position = game.at(1,0), img = "casilleros/cordoba.png")
+	]	
 	
-const region1 = [
-	new Provincia(position = game.at(7,0), img = "casilleros/entreRios.png"),
-	new Provincia(position = game.at(6,0), img = "casilleros/buenosAires.png"),
-	new Provincia(position = game.at(5,0), img = "casilleros/santaFe.png")
-]
+	const region3 = [
+		new Provincia(position = game.at(0,1), img = "casilleros/chaco.png"),
+		new Provincia(position = game.at(0,2), img = "casilleros/corrientes.png"),
+		new Provincia(position = game.at(0,3), img = "casilleros/misiones.png")
+	]	
 	
-const region2 = [
-	new Provincia(position = game.at(3,0), img = "casilleros/santiago.png"),
-	new Provincia(position = game.at(2,0), img = "casilleros/laPampa.png"),
-	new Provincia(position = game.at(1,0), img = "casilleros/cordoba.png")
-]	
+	const region4 = [
+		new Provincia(position = game.at(0,5), img = "casilleros/formosa.png"),
+		new Provincia(position = game.at(0,6), img = "casilleros/jujuy.png"),
+		new Provincia(position = game.at(0,7), img = "casilleros/salta.png")
+	]
+	
+	const region5 = [
+		new Provincia(position = game.at(1,8), img = "casilleros/tucuman.png"),
+		new Provincia(position = game.at(2,8), img = "casilleros/catamarca.png"),
+		new Provincia(position = game.at(3,8), img = "casilleros/laRioja.png")
+	]
+	
+	const region6 = [
+		new Provincia(position = game.at(5,8), img = "casilleros/sanJuan.png"),
+		new Provincia(position = game.at(6,8), img = "casilleros/sanLuis.png"),
+		new Provincia(position = game.at(7,8), img = "casilleros/mendoza.png")
+	]
+	
+	const region7 = [
+		new Provincia(position = game.at(8,7), img = "casilleros/chubut.png"),
+		new Provincia(position = game.at(8,6), img = "casilleros/rioNegro.png"),
+		new Provincia(position = game.at(8,5), img = "casilleros/neuquen.png")
+	]
+	
+	const region8 = [
+		new Provincia(position = game.at(8,3), img = "casilleros/santaCruz.png"),
+		new Provincia(position = game.at(8,2), img = "casilleros/tierraDelFuego.png"),
+		new Provincia(position = game.at(8,1), img = "casilleros/malvinas.png")
+	]
+	
+	const trenes = [
+		new Tren(position = game.at(4,0), img = "casilleros/sarmiento.png"),
+		new Tren(position = game.at(8,4), img = "casilleros/sanMartin.png"),
+		new Tren(position = game.at(0,4), img = "casilleros/roca.png"),
+		new Tren(position = game.at(4,8), img = "casilleros/mitre.png")
+	]
+	
+	const property todasLasRegiones = [
+		region1,region2,region3,region4,
+		region5,region6,region7,region8,
+		trenes
+	]
+}
 
-const region3 = [
-	new Provincia(position = game.at(0,1), img = "casilleros/chaco.png"),
-	new Provincia(position = game.at(0,2), img = "casilleros/corrientes.png"),
-	new Provincia(position = game.at(0,3), img = "casilleros/misiones.png")
-]	
 
-const region4 = [
-	new Provincia(position = game.at(0,5), img = "casilleros/formosa.png"),
-	new Provincia(position = game.at(0,6), img = "casilleros/jujuy.png"),
-	new Provincia(position = game.at(0,7), img = "casilleros/salta.png")
-]
 
-const region5 = [
-	new Provincia(position = game.at(1,8), img = "casilleros/tucuman.png"),
-	new Provincia(position = game.at(2,8), img = "casilleros/catamarca.png"),
-	new Provincia(position = game.at(3,8), img = "casilleros/laRioja.png")
-]
-
-const region6 = [
-	new Provincia(position = game.at(5,8), img = "casilleros/sanJuan.png"),
-	new Provincia(position = game.at(6,8), img = "casilleros/sanLuis.png"),
-	new Provincia(position = game.at(7,8), img = "casilleros/mendoza.png")
-]
-
-const region7 = [
-	new Provincia(position = game.at(8,7), img = "casilleros/chubut.png"),
-	new Provincia(position = game.at(8,6), img = "casilleros/rioNegro.png"),
-	new Provincia(position = game.at(8,5), img = "casilleros/neuquen.png")
-]
-
-const region8 = [
-	new Provincia(position = game.at(8,3), img = "casilleros/santaCruz.png"),
-	new Provincia(position = game.at(8,2), img = "casilleros/tierraDelFuego.png"),
-	new Provincia(position = game.at(8,1), img = "casilleros/malvinas.png")
-]
-
-const trenes = [
-	new Tren(position = game.at(4,0), img = "casilleros/sarmiento.png"),
-	new Tren(position = game.at(8,4), img = "casilleros/sanMartin.png"),
-	new Tren(position = game.at(0,4), img = "casilleros/roca.png"),
-	new Tren(position = game.at(4,8), img = "casilleros/mitre.png")
-]

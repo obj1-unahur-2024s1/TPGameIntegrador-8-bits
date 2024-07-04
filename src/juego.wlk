@@ -129,7 +129,7 @@ object juego{
 		casilleros.forEach{casillero => game.addVisual(casillero)}
 		banco.todasDelBanco(casilleros)
 		
-		regiones.forEach{ unaRegion =>
+		regiones.todasLasRegiones().forEach{ unaRegion =>
 			unaRegion.forEach{ubicacion => game.addVisual(ubicacion) }
 			banco.todasDelBanco(unaRegion)
 		}

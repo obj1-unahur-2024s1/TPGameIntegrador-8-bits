@@ -71,7 +71,7 @@ object teclado{
 		//Comprar propiedad a otro jugador
 		keyboard.t().onPressDo{
 			//Retorna la región actual
-			const currentRegion = regiones.filter({ r => r.contains(juego.playerOnTurn().currentLocation())}).uniqueElement()
+			const currentRegion = regiones.todasLasRegiones().filter({ r => r.contains(juego.playerOnTurn().currentLocation())}).uniqueElement()
 			
 			if (juego.partidaIniciada() and !juego.playerOnTurn().currentLocation().esCasilleroEspecial()){ //Valida que no sea casillero especial
 				if (juego.playerOnTurn().dinero() < juego.playerOnTurn().currentLocation().costo()*1.5){

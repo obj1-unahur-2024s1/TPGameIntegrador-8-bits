@@ -179,7 +179,7 @@ class Player{
 		alquilerPago.addVisual()
 		game.schedule(1500,{ alquilerPago.removeVisual() })
  		//Evalúa si el dueño de la Propiedad es dueño de la Región (o de los 4 Trenes)
-		const currentRegion = regiones.filter({ r => r.contains(self.currentLocation())}).uniqueElement()
+		const currentRegion = regiones.todasLasRegiones().filter({ r => r.contains(self.currentLocation())}).uniqueElement()
 		if (currentRegion.all({p => p.titular() == self.currentLocation().titular()})){
 			//Cobra el 100% del valor de la propiedad
 			self.pagar(propiedad.alquiler() * 2)
