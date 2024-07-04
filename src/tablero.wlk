@@ -87,7 +87,7 @@ const regiones = [
 	trenes]
 
 //CasillerosEspeciales Y Etiquetas Dobles
-const salida = new CasilleroEspecial(position = game.at(8,0),img="casilleros/salida.png",tipo="Salida")
-const suerte =  new CasilleroEspecial(position = game.at(0,0),img="casilleros/suerte.png",tipo="Suerte")
-const carcel = new CasilleroEspecial(position = game.at(0,8),img="casilleros/carcel.png",tipo="Carcel")
-const mufa =  new CasilleroEspecial(position = game.at(8,8),img="casilleros/mufa.png",tipo="Mufa")
+const salida = new Salida(position = game.at(8,0),img="casilleros/salida.png")
+const suerte =  new CasilleroSuerte(position = game.at(0,0),img="casilleros/suerte.png")
+const carcel = new Carcel(position = game.at(0,8),img="casilleros/carcel.png")
+const mufa =  new CasilleroMufa(position = game.at(8,8),img="casilleros/mufa.png")

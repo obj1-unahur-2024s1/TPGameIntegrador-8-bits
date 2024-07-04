@@ -33,34 +33,43 @@ class Tren inherits Provincia{
 }
 
 class CasilleroEspecial inherits Casillero{
-	const property tipo
-	
 	override method esCasilleroEspecial() = true
-	
+}
+
+class Salida inherits CasilleroEspecial{
 	method activarCasillero(){
-		const ubicacion = juego.playerOnTurn().currentLocation()
-		if (ubicacion.tipo() == "Salida"){
-			juego.playerOnTurn().cobrarSalario()
-			const cobrasDoble = new Popup(img="popups/cobrasDoble.png",position=game.at(1,2))
-			cobrasDoble.addVisual()
-			game.schedule(2000,{ cobrasDoble.removeVisual() })
-			
-		}else if (ubicacion.tipo() == "Suerte"){
-			const randomLuckyCard = new Suerte()
-			randomLuckyCard.activar()
-			
-		}else if(ubicacion.tipo() == "Carcel"){
-			juego.playerOnTurn().caePreso()
-			game.sound("sounds/guardia.mp3").play()
-			const preso = new Popup(img="popups/preso.png",position=game.at(2,2))
-			preso.addVisual()
-			game.schedule(2500,{preso.removeVisual()})
-			
-		}else if (ubicacion.tipo() == "Mufa"){
-			const randomMufaCard = new Mufa()
-			randomMufaCard.activar()
-		}		
+		juego.playerOnTurn().cobrarSalario()
+		const cobrasDoble = new Popup(img="popups/cobrasDoble.png",position=game.at(1,2))
+		cobrasDoble.addVisual()
+		game.schedule(2000,{ cobrasDoble.removeVisual() })
 	}
 }
+
+class Carcel inherits CasilleroEspecial{
+	method activarCasillero(){
+		juego.playerOnTurn().caePreso()
+		game.sound("sounds/guardia.mp3").play()
+		const preso = new Popup(img="popups/preso.png",position=game.at(2,2))
+		preso.addVisual()
+		game.schedule(2500,{preso.removeVisual()})
+	}
+}
+
+class CasilleroSuerte inherits CasilleroEspecial{
+	method activarCasillero(){
+		const randomLuckyCard = new Suerte()
+		randomLuckyCard.activar()
+	}
+}
+
+class CasilleroMufa inherits CasilleroEspecial{
+	method activarCasillero(){
+		const randomMufaCard = new Mufa()
+		randomMufaCard.activar()
+	}
+}
+
+
+
 
 class Label inherits Visual{}
