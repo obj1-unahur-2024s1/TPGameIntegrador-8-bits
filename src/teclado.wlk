@@ -71,7 +71,7 @@ object teclado{
 		//Comprar propiedad a otro jugador
 		keyboard.t().onPressDo{
 			//Retorna la región actual
-			const currentRegion = regiones.todasLasRegiones().filter({ r => r.contains(juego.playerOnTurn().currentLocation())}).uniqueElement()
+//			const currentRegion = regiones.todasLasRegiones().filter({ r => r.contains(juego.playerOnTurn().currentLocation())}).uniqueElement()
 			
 			if (juego.partidaIniciada() and !juego.playerOnTurn().currentLocation().esCasilleroEspecial()){ //Valida que no sea casillero especial
 				if (juego.playerOnTurn().dinero() < juego.playerOnTurn().currentLocation().costo()*1.5){
@@ -81,11 +81,11 @@ object teclado{
 				}
 				//Valida si el dueño de la ubicación actual es dueño de la region completa
 				else if (!juego.playerOnTurn().currentLocation().esDelBanco() and
-					currentRegion.all({p => p.titular() == juego.playerOnTurn().currentLocation().titular()})){
+					juego.playerOnTurn().esTerrateniente(juego.playerOnTurn().currentRegion())){
 					const terrateniente = new Popup(img="popups/terrateniente.png",position=game.at(1,2))
 					terrateniente.addVisual()
 					game.schedule(2000,{ terrateniente.removeVisual() })
-				}	
+				}
 				else if (!juego.jugadores().isEmpty() and
 						!juego.playerOnTurn().currentLocation().esDelBanco() and
 						!juego.playerOnTurn().mePertenece(juego.playerOnTurn().currentLocation())){

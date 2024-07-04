@@ -27,6 +27,8 @@ class Player{
 	}
 	method puedeComprar(unaPropiedad) = juego.playerOnTurn().dinero() >= unaPropiedad.costo()
 	method mePertenece(unaPropiedad) = unaPropiedad.titular() == self
+	method esTerrateniente(unaRegion) = self.currentRegion().all({p => p.titular() == juego.playerOnTurn().currentLocation().titular()})
+	
 	method cobrarSalario(){
 	//Valida que al pasar por la salida cobren sólo después de que alguno compro una propiedad		
 		if(juego.jugadores().any( { jugador => !jugador.misPropiedades().isEmpty() } )){
@@ -74,7 +76,7 @@ class Player{
 	
 	//Propiedad en la ubicacion del jugador actual (SE PODRA CON FILTER?)
 	method currentLocation() = game.getObjectsIn(juego.playerOnTurn().position()).first()
-	
+	method currentRegion() = regiones.todasLasRegiones().filter({ r => r.contains(juego.playerOnTurn().currentLocation())}).uniqueElement()
 	
 	method activarCasillero(){
 		//Si es casilla especial se activa.
