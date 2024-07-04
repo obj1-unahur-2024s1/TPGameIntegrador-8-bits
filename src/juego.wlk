@@ -99,7 +99,7 @@ object juego{
 			new CasilleroSuerte(position = game.at(0,0),img="casilleros/suerte.png"),
 			new Carcel(position = game.at(0,8),img="casilleros/carcel.png"),
 			new CasilleroMufa(position = game.at(8,8),img="casilleros/mufa.png"),
-				
+
 			new Visual(position = game.at(7,1), img = "casilleros/label-malvinasEntreRios.png"),
 			new Visual(position = game.at(6,1), img = "casilleros/label-buenosAires.png"),
 			new Visual(position = game.at(5,1), img = "casilleros/label-santaFe.png"),

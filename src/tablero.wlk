@@ -85,9 +85,3 @@ const regiones = [
 	region1,region2,region3,region4,
 	region5,region6,region7,region8,
 	trenes]
-
-//CasillerosEspeciales Y Etiquetas Dobles
-//const salida = new Salida(position = game.at(8,0),img="casilleros/salida.png")
-//const suerte =  new CasilleroSuerte(position = game.at(0,0),img="casilleros/suerte.png")
-//const carcel = new Carcel(position = game.at(0,8),img="casilleros/carcel.png")
-//const mufa =  new CasilleroMufa(position = game.at(8,8),img="casilleros/mufa.png")
