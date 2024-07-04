@@ -94,9 +94,9 @@ class Player{
 			self.noTienesDinero()}
 			
 		//Evaluá Condicion de Victoria o Derrota
-		self.condicionVictoriaODerrota()	
+		self.condicionVictoriaODerrota()
 	}
-	
+
 	method noTienesDinero(){
 		const dineroInsuficiente = new Popup(img="popups/dineroInsuficiente.png",position=game.at(1,2))
 		dineroInsuficiente.addVisual()

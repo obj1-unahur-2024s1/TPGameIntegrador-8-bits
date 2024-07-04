@@ -123,15 +123,16 @@ object juego{
 			new Visual(position = game.at(7,5), img = "casilleros/label-neuquen.png"),
 			new Visual(position = game.at(7,4), img = "casilleros/label-sanMartin.png"),
 			new Visual(position = game.at(7,3), img = "casilleros/label-santaCruz.png"),
-			new Visual(position = game.at(7,2), img = "casilleros/label-tierraDelFuego.png"),
-		
-			entreRios,buenosAires,santaFe,sarmiento,santiago,laPampa,cordoba,chaco,corrientes,misiones,roca,
-			formosa,jujuy,salta,tucuman,catamarca,laRioja,mitre,sanJuan,sanLuis,mendoza,chubut,rioNegro,
-			neuquen,sanMartin,santaCruz,tierraDelFuego,malvinas
+			new Visual(position = game.at(7,2), img = "casilleros/label-tierraDelFuego.png")
 			]
 		
 		casilleros.forEach{casillero => game.addVisual(casillero)}
 		banco.todasDelBanco(casilleros)
+		
+		regiones.forEach{ unaRegion =>
+			unaRegion.forEach{ubicacion => game.addVisual(ubicacion) }
+			banco.todasDelBanco(unaRegion)
+		}
 	}
 }
 
