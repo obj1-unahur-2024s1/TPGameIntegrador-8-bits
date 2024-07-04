@@ -93,40 +93,35 @@ object juego{
 		game.onCollideDo(salida, {player => self.playerOnTurn().cobrarSalario()})
 	}
 	
-	method generarCasilleros(){		
-		const labelmalvinasEntreRios = new Label(position = game.at(7,1), img = "casilleros/label-malvinasEntreRios.png")
-		const labelBuenosAires = new Label(position = game.at(6,1), img = "casilleros/label-buenosAires.png")
-		const labelSantaFe = new Label(position = game.at(5,1), img = "casilleros/label-santaFe.png")
-		const labelSarmiento = new Label(position = game.at(4,1), img = "casilleros/label-sarmiento.png")
-		const labelSantiago = new Label(position = game.at(3,1), img = "casilleros/label-santiago.png")
-		const labelLaPampa = new Label(position = game.at(2,1), img = "casilleros/label-laPampa.png")
-		const labelCordobaChaco = new Label(position = game.at(1,1), img = "casilleros/label-cordobaChaco.png")
-		const labelCorrientes = new Label(position = game.at(1,2), img = "casilleros/label-corrientes.png")
-		const labelMisiones = new Label(position = game.at(1,3), img = "casilleros/label-misiones.png")
-		const labelRoca = new Label(position = game.at(1,4), img = "casilleros/label-roca.png")
-		const labelFormosa = new Label(position = game.at(1,5), img = "casilleros/label-formosa.png")
-		const labelJujuy = new Label(position = game.at(1,6), img = "casilleros/label-jujuy.png")
-		const labelSaltaTucuman = new Label(position = game.at(1,7), img = "casilleros/label-saltaTucuman.png")
-		const labelCatamarca = new Label(position = game.at(2,7), img = "casilleros/label-catamarca.png")
-		const labelLaRioja = new Label(position = game.at(3,7), img = "casilleros/label-laRioja.png")
-		const labelMitre = new Label(position = game.at(4,7), img = "casilleros/label-mitre.png")
-		const labelSanJuan = new Label(position = game.at(5,7), img = "casilleros/label-sanJuan.png")
-		const labelSanLuis = new Label(position = game.at(6,7), img = "casilleros/label-sanLuis.png")
-		const labelMendozaChubut = new Label(position = game.at(7,7), img = "casilleros/label-mendozaChubut.png")
-		const labelRioNegro = new Label(position = game.at(7,6), img = "casilleros/label-rioNegro.png")
-		const labelNeuquen = new Label(position = game.at(7,5), img = "casilleros/label-neuquen.png")
-		const labelSanMartin = new Label(position = game.at(7,4), img = "casilleros/label-sanMartin.png")
-		const labelSantaCruz = new Label(position = game.at(7,3), img = "casilleros/label-santaCruz.png")
-		const labelTierraDelFuego = new Label(position = game.at(7,2), img = "casilleros/label-tierraDelFuego.png")
-		
+	method generarCasilleros(){				
 		const casilleros =[
 			banco,salida,suerte,carcel,mufa,
 			
-			labelmalvinasEntreRios,labelBuenosAires,labelSantaFe,labelSarmiento,labelSantiago,
-			labelLaPampa,labelCordobaChaco,labelCorrientes,labelMisiones,labelRoca,labelFormosa,labelJujuy,
-			labelSaltaTucuman,labelCatamarca,labelLaRioja,labelMitre,labelSanJuan,labelSanLuis,labelMendozaChubut,
-			labelRioNegro,labelNeuquen,labelSanMartin,labelSantaCruz,labelTierraDelFuego,
-			
+		new Visual(position = game.at(7,1), img = "casilleros/label-malvinasEntreRios.png"),
+		new Visual(position = game.at(6,1), img = "casilleros/label-buenosAires.png"),
+		new Visual(position = game.at(5,1), img = "casilleros/label-santaFe.png"),
+		new Visual(position = game.at(4,1), img = "casilleros/label-sarmiento.png"),
+		new Visual(position = game.at(3,1), img = "casilleros/label-santiago.png"),
+		new Visual(position = game.at(2,1), img = "casilleros/label-laPampa.png"),
+		new Visual(position = game.at(1,1), img = "casilleros/label-cordobaChaco.png"),
+		new Visual(position = game.at(1,2), img = "casilleros/label-corrientes.png"),
+		new Visual(position = game.at(1,3), img = "casilleros/label-misiones.png"),
+		new Visual(position = game.at(1,4), img = "casilleros/label-roca.png"),
+		new Visual(position = game.at(1,5), img = "casilleros/label-formosa.png"),
+		new Visual(position = game.at(1,6), img = "casilleros/label-jujuy.png"),
+		new Visual(position = game.at(1,7), img = "casilleros/label-saltaTucuman.png"),
+		new Visual(position = game.at(2,7), img = "casilleros/label-catamarca.png"),
+		new Visual(position = game.at(3,7), img = "casilleros/label-laRioja.png"),
+		new Visual(position = game.at(4,7), img = "casilleros/label-mitre.png"),
+		new Visual(position = game.at(5,7), img = "casilleros/label-sanJuan.png"),
+		new Visual(position = game.at(6,7), img = "casilleros/label-sanLuis.png"),
+		new Visual(position = game.at(7,7), img = "casilleros/label-mendozaChubut.png"),
+		new Visual(position = game.at(7,6), img = "casilleros/label-rioNegro.png"),
+		new Visual(position = game.at(7,5), img = "casilleros/label-neuquen.png"),
+		new Visual(position = game.at(7,4), img = "casilleros/label-sanMartin.png"),
+		new Visual(position = game.at(7,3), img = "casilleros/label-santaCruz.png"),
+		new Visual(position = game.at(7,2), img = "casilleros/label-tierraDelFuego.png"),
+		
 			entreRios,buenosAires,santaFe,sarmiento,santiago,laPampa,cordoba,chaco,corrientes,misiones,roca,
 			formosa,jujuy,salta,tucuman,catamarca,laRioja,mitre,sanJuan,sanLuis,mendoza,chubut,rioNegro,
 			neuquen,sanMartin,santaCruz,tierraDelFuego,malvinas

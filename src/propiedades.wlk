@@ -68,8 +68,3 @@ class CasilleroMufa inherits CasilleroEspecial{
 		randomMufaCard.activar()
 	}
 }
-
-
-
-
-class Label inherits Visual{}
