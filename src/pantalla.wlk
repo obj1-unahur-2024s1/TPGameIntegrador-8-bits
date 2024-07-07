@@ -103,17 +103,6 @@ class WinScreen inherits Animation{
 		})
 	}
 
-	//Animación de dinero al comprar Tren o Provincia
-	method comprarProvinciaOTren(){
-		if (turno.playerOnTurn().currentLocation().esProvincia()){
-			const comprarPropiedad = new DineroModifier(img="menos400-")
-			comprarPropiedad.animation(4)
-		}else{
-			const comprarTren = new DineroModifier(img="menos1000-")
-			comprarTren.animation(4)			
-		}
-	}
-	
 	method transferencia(){
 		if (turno.playerOnTurn().currentLocation().esProvincia()){
 			const transferirPropiedad = new DineroModifier(img="menos600-")

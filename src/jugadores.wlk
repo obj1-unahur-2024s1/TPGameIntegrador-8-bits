@@ -77,21 +77,7 @@ class Player{
 	
 	method activarCasillero(){
 		//Si es casilla especial se activa.
-		if (self.currentLocation().esCasilleroEspecial()){
-			self.currentLocation().activarCasillero()}
-			
-		//Si es del banco y tienes dinero ofrece comprarla
-		else if (self.puedeComprar(self.currentLocation()) and self.currentLocation().esDelBanco()){
-			self.comprar(self.currentLocation())}
-			
-		//Si no es del banco, y no me pertenece, paga alquiler
-		else if (!self.currentLocation().esDelBanco() and !self.mePertenece(self.currentLocation())){
-			self.pagarAlquiler(self.currentLocation())}
-			
-		//Si no tienes dinero suficiente abre un popup avisandolo.
-		else if (!self.puedeComprar(self.currentLocation()) and !self.mePertenece(self.currentLocation())){
-			self.noTienesDinero()}
-			
+		self.currentLocation().activarCasillero()
 		//Evaluá Condicion de Victoria o Derrota
 		self.condicionVictoriaODerrota()
 	}
@@ -113,7 +99,7 @@ class Player{
 			self.confirmar(unaPropiedad)
 			confirmarCompra.removeVisual()
 			//Crea una animacion de descuento del dinero segun compra
-			tablero.dineroAnimation().comprarProvinciaOTren()
+			turno.playerOnTurn().currentLocation().animacionCompra()
 			}
 		}keyboard.n().onPressDo{confirmarCompra.removeVisual()}
 	}
@@ -142,7 +128,7 @@ class Player{
 				//Completa la transferencia en el siguente método
 				self.confirmarTransferencia()
 				confirmarTransferenciaPopup.removeVisual()
-				tablero.dineroAnimation().transferencia()
+				turno.playerOnTurn().currentLocation().animacionTransferencia()
 				//Popup confirmando la compra
 				const compraRealizada = new Popup(img="popups/compraRealizada.png",position=game.at(1,2))
 				compraRealizada.addVisual()
@@ -182,27 +168,13 @@ class Player{
 		if (currentRegion.all({p => p.titular() == self.currentLocation().titular()})){
 			//Cobra el 100% del valor de la propiedad
 			self.pagar(propiedad.alquiler() * 2)
-			propiedad.titular().cobrar(propiedad.alquiler()*2)
-			if(!self.currentLocation().esTren()){
-				const alquilerX2 = new DineroModifier(img="menos400-")
-				alquilerX2.animation(4)
-			}else{
-				const alquilerTrenX2 = new DineroModifier(img="menos1000-")
-				alquilerTrenX2.animation(4)
-			}
+			propiedad.titular().cobrar(propiedad.alquiler()*2)			
+			turno.playerOnTurn().currentLocation().animacionDobleAlquiler()
 		}else{
 			//Paga el alquiler al dueño de la propiedad
 			self.pagar(propiedad.alquiler())
 			propiedad.titular().cobrar(propiedad.alquiler())
-			if(!self.currentLocation().esTren()){
-				//Reproduce la animación en Provincias
-				const alquiler = new DineroModifier(img="menos200-")
-				alquiler.animation(4)
-			}else{
-				//Reproduce la animación en Trenes
-				const alquilerTren = new DineroModifier(img="menos500-")
-				alquilerTren.animation(4)
-			}
+			turno.playerOnTurn().currentLocation().animacionAlquiler()
 		}
 		game.sound("sounds/coins.mp3").play()
 	}

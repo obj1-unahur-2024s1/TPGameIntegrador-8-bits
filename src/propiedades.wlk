@@ -10,31 +10,78 @@ class Casillero{ //Clase Base
 	
 	method image() = img
 	method esCasilleroEspecial() = false
-	method esProvincia() = false
-	method esTren() = false
 }
 
 class Provincia inherits Casillero{
 	var titular = banco
 	
-	override method esProvincia() = true
 	method costo() = 400
 	method alquiler() = self.costo() * 0.5
 	
 	method titular() = titular
 	method transferirA(nuevoTitular){titular = nuevoTitular}
 	method esDelBanco() = banco.misPropiedades().contains(self)
+	
+	method activarCasillero(){
+		//Si es del banco y tienes dinero ofrece comprarla
+		if (turno.playerOnTurn().puedeComprar(self) and self.esDelBanco()){
+			turno.playerOnTurn().comprar(self)}
+			
+		//Si no es del banco, y no me pertenece, paga alquiler
+		else if (!self.esDelBanco() and !turno.playerOnTurn().mePertenece(self)){
+			turno.playerOnTurn().pagarAlquiler(self)}
+			
+		//Si no tienes dinero suficiente abre un popup avisandolo.
+		else if (!turno.playerOnTurn().puedeComprar(self) and !turno.playerOnTurn().mePertenece(self)){
+			turno.playerOnTurn().noTienesDinero()}		
+	}
+	
+	method animacionCompra(){
+		const comprarPropiedad = new DineroModifier(img="menos400-")
+		comprarPropiedad.animation(4)
+	}
+	
+	method animacionAlquiler(){
+		const alquiler = new DineroModifier(img="menos200-")
+		alquiler.animation(4)
+	}
+	
+	method animacionDobleAlquiler(){
+		const alquilerX2 = new DineroModifier(img="menos400-")
+		alquilerX2.animation(4)
+	}
+	
+	method animacionTransferencia(){
+		const transferirPropiedad = new DineroModifier(img="menos600-")
+		transferirPropiedad.animation(4)
+	}
 }
 
 class Tren inherits Provincia{
-	override method esProvincia() = false
-	override method esTren() = true
 	override method costo() = 1000
+	
+	override method animacionCompra(){
+		const comprarTren = new DineroModifier(img="menos1000-")
+		comprarTren.animation(4)
+	}
+	
+	override method animacionAlquiler(){
+		const alquilerTren = new DineroModifier(img="menos500-")
+		alquilerTren.animation(4)
+	}
+	
+	override method animacionDobleAlquiler(){
+		const alquilerTrenX2 = new DineroModifier(img="menos1000-")
+		alquilerTrenX2.animation(4)
+	}
+	
+	override method animacionTransferencia(){
+		const transferirTren = new DineroModifier(img="menos1500-")
+		transferirTren.animation(4)
+	}
 }
 
-class CasilleroEspecial inherits Casillero{
-	override method esCasilleroEspecial() = true
-}
+
 
 object salida{
 	method esCasilleroEspecial() = true
@@ -47,6 +94,10 @@ object salida{
 		cobrasDoble.addVisual()
 		game.schedule(2000,{ cobrasDoble.removeVisual() })
 	}
+}
+
+class CasilleroEspecial inherits Casillero{
+	override method esCasilleroEspecial() = true
 }
 
 class Carcel inherits CasilleroEspecial{
