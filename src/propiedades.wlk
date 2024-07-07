@@ -81,8 +81,6 @@ class Tren inherits Provincia{
 	}
 }
 
-
-
 object salida{
 	method esCasilleroEspecial() = true
 	method position() = game.at(8,0)

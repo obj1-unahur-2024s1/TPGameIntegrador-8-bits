@@ -58,7 +58,7 @@ class Player{
 			//Activa la reaacion en el casillero que cae
 			const tiempoDeReaccion = (300*dado.valor())+1000
 			game.schedule(tiempoDeReaccion,{
-				self.activarCasillero()
+				self.reaccionarACasillero()
 				//Permite finalizar el turno (y no antes de completar todas las acciones)
 				finDeTurno = true
 			})
@@ -75,9 +75,9 @@ class Player{
 	method currentLocation() = game.getObjectsIn(turno.playerOnTurn().position()).first()
 	method currentRegion() = regiones.todasLasRegiones().filter({ r => r.contains(turno.playerOnTurn().currentLocation())}).uniqueElement()
 	
-	method activarCasillero(){
+	method reaccionarACasillero(){
 		//Si es casilla especial se activa.
-		self.currentLocation().activarCasillero()
+		self.currentLocation().reaccionarACasillero()
 		//Evaluá Condicion de Victoria o Derrota
 		self.condicionVictoriaODerrota()
 	}
@@ -215,10 +215,10 @@ class Player{
 		game.schedule(1000, {prestamoConfirmado.animation(4)})
 		//Si no es un casillero especial ni es de otro jugador vuelve a ofrecer comprar
 		if (!self.currentLocation().esCasilleroEspecial() and self.currentLocation().esDelBanco()){
-			game.schedule(2000, {self.activarCasillero()})
+			game.schedule(2000, {self.reaccionarACasillero()})
 		}
 	}
-	
+
 	method pagarDeudas(){
 		//Condición para que sólo se active si pidió algún prestamo
 		if (dinero >= 600 and prestamosDisponibles < 3){
