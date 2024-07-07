@@ -25,9 +25,9 @@ class Player{
 		deuda = deuda + 0.max(monto-dinero)
 		dinero = 0.max(dinero-monto)
 	}
-	method puedeComprar(unaPropiedad) = juego.playerOnTurn().dinero() >= unaPropiedad.costo()
+	method puedeComprar(unaPropiedad) = turno.playerOnTurn().dinero() >= unaPropiedad.costo()
 	method mePertenece(unaPropiedad) = unaPropiedad.titular() == self
-	method esTerrateniente(unaRegion) = self.currentRegion().all({p => p.titular() == juego.playerOnTurn().currentLocation().titular()})
+	method esTerrateniente(unaRegion) = self.currentRegion().all({p => p.titular() == turno.playerOnTurn().currentLocation().titular()})
 	
 	method cobrarSalario(){
 	//Valida que al pasar por la salida cobren sólo después de que alguno compro una propiedad		
@@ -75,8 +75,8 @@ class Player{
 	}
 	
 	//Propiedad en la ubicacion del jugador actual (SE PODRA CON FILTER?)
-	method currentLocation() = game.getObjectsIn(juego.playerOnTurn().position()).first()
-	method currentRegion() = regiones.todasLasRegiones().filter({ r => r.contains(juego.playerOnTurn().currentLocation())}).uniqueElement()
+	method currentLocation() = game.getObjectsIn(turno.playerOnTurn().position()).first()
+	method currentRegion() = regiones.todasLasRegiones().filter({ r => r.contains(turno.playerOnTurn().currentLocation())}).uniqueElement()
 	
 	method activarCasillero(){
 		//Si es casilla especial se activa.
@@ -155,7 +155,7 @@ class Player{
 	}
 	
 	method confirmarTransferencia(){
-		const inmueble = juego.playerOnTurn().currentLocation()
+		const inmueble = turno.playerOnTurn().currentLocation()
 		const vendedor = inmueble.titular()
 		//Sonido
 		game.sound("sounds/register.mp3").play()
@@ -337,8 +337,8 @@ class Player{
 		//Borra las propiedades del jugador
 		misPropiedades.clear()
 		//Asigna el turno al siguiente jugador		
-		var turno = if (juego.turnoJugadorNro() < juego.jugadores().size()) juego.turnoJugadorNro()-1 else 0
-		juego.turnoJugadorNro(turno)
+		var sigTurno = if (turno.turnoJugadorNro() < juego.jugadores().size()) turno.turnoJugadorNro()-1 else 0
+		turno.turnoJugadorNro(sigTurno)
 		//Remueve al jugador de la lista de jugadores
 		juego.jugadores().remove(self)
 		//Elimina el jugador de la visual
@@ -356,7 +356,7 @@ class Player{
 	}
 	
 	method borrarMarcadorActual(){
-		game.removeVisual(game.getObjectsIn(juego.playerOnTurn().position()).last())
+		game.removeVisual(game.getObjectsIn(turno.playerOnTurn().position()).last())
 	}
 	
 	method borrarMarcadores(){

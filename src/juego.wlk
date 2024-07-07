@@ -8,7 +8,6 @@ import propiedades.*
 import teclado.*
 
 object juego{
-	var turnoJugadorNro = 0
 	var property popupEnPantalla = []
 	const property jugadores = []
 	
@@ -52,23 +51,6 @@ object juego{
 			balance.addVisual()
 		}
 	}
-	
-	method endTurn(){
-		//Reestablece el turno y la tirada de dados del jugador del siguiente turno
-		self.playerOnTurn().yaTiro(false)
-		self.playerOnTurn().finDeTurno(false)
-		//Asigna el turno al siguiente jugador y lo indica en un popup
-		turnoJugadorNro = if (turnoJugadorNro == jugadores.size()-1) 0 else turnoJugadorNro+1
-		const imgPlayerTurn = new Popup(img = "popups/" + self.playerOnTurn().nombre().toString() + "turn.png",position=game.at(1,2))
-		imgPlayerTurn.addVisual()
-		game.schedule(1000, {imgPlayerTurn.removeVisual()} )
-	}
-
-	//Retorna o establece el Nro de Jugador activo en este turno
-	method turnoJugadorNro() = turnoJugadorNro+1
-	method turnoJugadorNro(jugador){turnoJugadorNro = jugador}
-	method playerOnTurn() = jugadores.get(turnoJugadorNro)
-	method playerOnTurn(jugador){jugadores.get(jugador)}
 
 	method generarTablero(){
 		//Elimina el Menu de Inicio
@@ -90,7 +72,7 @@ object juego{
 		game.schedule(300,{song.partida().play()})
 		
 		//PARA COBRAR DESPUES DE LA PRIMER VUELTA AL MENOS 1 TIENE QUE HABER COMPRADO UNA PROPIEDAD
-		game.onCollideDo(salida, {player => self.playerOnTurn().cobrarSalario()})
+		game.onCollideDo(salida, {player => turno.playerOnTurn().cobrarSalario()})
 	}
 	
 	method generarCasilleros(){				
@@ -134,6 +116,30 @@ object juego{
 			banco.todasDelBanco(unaRegion)
 		}
 	}
+}
+
+object turno{
+	var turnoJugadorNro = 0
+	
+	//Retorna o establece el Nro de Jugador activo en este turno
+	method turnoJugadorNro() = turnoJugadorNro+1
+	method turnoJugadorNro(jugador){turnoJugadorNro = jugador}
+	method playerOnTurn() = juego.jugadores().get(turnoJugadorNro)
+	method playerOnTurn(jugador){juego.jugadores().get(jugador)}
+	
+	method endTurn(){
+		//Reestablece el turno y la tirada de dados del jugador del siguiente turno
+		self.playerOnTurn().yaTiro(false)
+		self.playerOnTurn().finDeTurno(false)
+		//Asigna el turno al siguiente jugador y lo indica en un popup
+		turnoJugadorNro = if (turnoJugadorNro == juego.jugadores().size()-1) 0 else turnoJugadorNro+1
+		const imgPlayerTurn = new Popup(img = "popups/" + self.playerOnTurn().nombre().toString() + "turn.png",position=game.at(1,2))
+		imgPlayerTurn.addVisual()
+		game.schedule(1000, {imgPlayerTurn.removeVisual()} )
+	}
+
+	
+	
 }
 
 object song{

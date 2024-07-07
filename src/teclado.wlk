@@ -65,31 +65,31 @@ object teclado{
 		//Tirar dados
 		keyboard.space().onPressDo{
 			if (!juego.jugadores().isEmpty() and juego.popupEnPantalla().isEmpty()){
-				juego.playerOnTurn().tirarDados()}
+				turno.playerOnTurn().tirarDados()}
 			}
 		
 		//Comprar propiedad a otro jugador
 		keyboard.t().onPressDo{
 			//Retorna la región actual
-//			const currentRegion = regiones.todasLasRegiones().filter({ r => r.contains(juego.playerOnTurn().currentLocation())}).uniqueElement()
+//			const currentRegion = regiones.todasLasRegiones().filter({ r => r.contains(turno.playerOnTurn().currentLocation())}).uniqueElement()
 			
-			if (juego.partidaIniciada() and !juego.playerOnTurn().currentLocation().esCasilleroEspecial()){ //Valida que no sea casillero especial
-				if (juego.playerOnTurn().dinero() < juego.playerOnTurn().currentLocation().costo()*1.5){
+			if (juego.partidaIniciada() and !turno.playerOnTurn().currentLocation().esCasilleroEspecial()){ //Valida que no sea casillero especial
+				if (turno.playerOnTurn().dinero() < turno.playerOnTurn().currentLocation().costo()*1.5){
 					const dineroInsuficiente = new Popup(img="popups/dineroInsuficiente.png",position=game.at(1,2))
 					dineroInsuficiente.addVisual()
 					game.schedule(1500,{ dineroInsuficiente.removeVisual() })
 				}
 				//Valida si el dueño de la ubicación actual es dueño de la region completa
-				else if (!juego.playerOnTurn().currentLocation().esDelBanco() and
-					juego.playerOnTurn().esTerrateniente(juego.playerOnTurn().currentRegion())){
+				else if (!turno.playerOnTurn().currentLocation().esDelBanco() and
+					turno.playerOnTurn().esTerrateniente(turno.playerOnTurn().currentRegion())){
 					const terrateniente = new Popup(img="popups/terrateniente.png",position=game.at(1,2))
 					terrateniente.addVisual()
 					game.schedule(2000,{ terrateniente.removeVisual() })
 				}
 				else if (!juego.jugadores().isEmpty() and
-						!juego.playerOnTurn().currentLocation().esDelBanco() and
-						!juego.playerOnTurn().mePertenece(juego.playerOnTurn().currentLocation())){
-					juego.playerOnTurn().transferencia()
+						!turno.playerOnTurn().currentLocation().esDelBanco() and
+						!turno.playerOnTurn().mePertenece(turno.playerOnTurn().currentLocation())){
+					turno.playerOnTurn().transferencia()
 				}
 			}
 		}
@@ -97,20 +97,20 @@ object teclado{
 		//Pedir Prestamo y Pagar Deudas
 		keyboard.o().onPressDo{
 			if (!juego.jugadores().isEmpty() and juego.popupEnPantalla().isEmpty()){
-				juego.playerOnTurn().pedirPrestamo()}
+				turno.playerOnTurn().pedirPrestamo()}
 		}
 		keyboard.p().onPressDo{
-			if (!juego.jugadores().isEmpty() and juego.popupEnPantalla().isEmpty() and juego.playerOnTurn().deuda() > 0){
-				if (juego.playerOnTurn().debeFianza()) juego.playerOnTurn().pagarFianza()
-				else juego.playerOnTurn().pagarDeudas()}
+			if (!juego.jugadores().isEmpty() and juego.popupEnPantalla().isEmpty() and turno.playerOnTurn().deuda() > 0){
+				if (turno.playerOnTurn().debeFianza()) turno.playerOnTurn().pagarFianza()
+				else turno.playerOnTurn().pagarDeudas()}
 		}
 		
 		//Finalizar turno
 		keyboard.f().onPressDo{
 			if (juego.partidaIniciada() and		//Valida que haya comenzado la partida 
 				juego.popupEnPantalla().isEmpty() and	//Valida que no hay otro popup abierto
-				juego.playerOnTurn().finDeTurno())	//Valida que ya terminó el turno
-					{juego.endTurn()}
+				turno.playerOnTurn().finDeTurno())	//Valida que ya terminó el turno
+					{turno.endTurn()}
 		}
 		
 	}

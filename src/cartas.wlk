@@ -13,7 +13,7 @@ class Suerte inherits Carta{
 	method image() = "cards/lucky" + img
 	
 	method activar(){
-		juego.playerOnTurn().cobrar(500)
+		turno.playerOnTurn().cobrar(500)
 
 		const luckyCardPopup = new Popup(img=self.image(),position=game.at(2,2))
 		luckyCardPopup.addVisual()
@@ -26,11 +26,11 @@ class Suerte inherits Carta{
 	}
 }
 
-class Mufa inherits Carta{
-	method image() = "cards/mufa" + img
+class Mufa inherits Suerte{
+	override method image() = "cards/mufa" + img
 	
-	method activar(){
-		juego.playerOnTurn().pagar(500)
+	override method activar(){
+		turno.playerOnTurn().pagar(500)
 		
 		const mufaCardPopup = new Popup(img=self.image(),position=game.at(2,2))
 		mufaCardPopup.addVisual()

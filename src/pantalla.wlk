@@ -71,7 +71,7 @@ class Animation inherits Visual{
 }
 
 class IndicadorJugador inherits Animation{
-	override method image() = "UI/playerOnTurn" + juego.playerOnTurn().numero() + "-" + frame + ".png"
+	override method image() = "UI/playerOnTurn" + turno.playerOnTurn().numero() + "-" + frame + ".png"
 }
 
 class WinScreen inherits Animation{
@@ -105,7 +105,7 @@ class WinScreen inherits Animation{
 
 	//Animación de dinero al comprar Tren o Provincia
 	method comprarProvinciaOTren(){
-		if (juego.playerOnTurn().currentLocation().esProvincia()){
+		if (turno.playerOnTurn().currentLocation().esProvincia()){
 			const comprarPropiedad = new DineroModifier(img="menos400-")
 			comprarPropiedad.animation(4)
 		}else{
@@ -115,7 +115,7 @@ class WinScreen inherits Animation{
 	}
 	
 	method transferencia(){
-		if (juego.playerOnTurn().currentLocation().esProvincia()){
+		if (turno.playerOnTurn().currentLocation().esProvincia()){
 			const transferirPropiedad = new DineroModifier(img="menos600-")
 			transferirPropiedad.animation(4)
 		}else{
@@ -127,8 +127,8 @@ class WinScreen inherits Animation{
  }
  
 class MarcadorDuenio{
-	var property position = juego.playerOnTurn().position()
-	const img = juego.playerOnTurn().nombre()
+	var property position = turno.playerOnTurn().position()
+	const img = turno.playerOnTurn().nombre()
 	method image() = "registros/" + img + ".png"
 }
 

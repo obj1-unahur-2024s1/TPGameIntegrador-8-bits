@@ -42,7 +42,7 @@ object salida{
 	method image() = "casilleros/salida.png"
 	
 	method activarCasillero(){
-		juego.playerOnTurn().cobrarSalario()
+		turno.playerOnTurn().cobrarSalario()
 		const cobrasDoble = new Popup(img="popups/cobrasDoble.png",position=game.at(1,2))
 		cobrasDoble.addVisual()
 		game.schedule(2000,{ cobrasDoble.removeVisual() })
@@ -51,7 +51,7 @@ object salida{
 
 class Carcel inherits CasilleroEspecial{
 	method activarCasillero(){
-		juego.playerOnTurn().caePreso()
+		turno.playerOnTurn().caePreso()
 		game.sound("sounds/guardia.mp3").play()
 		const preso = new Popup(img="popups/preso.png",position=game.at(2,2))
 		preso.addVisual()
