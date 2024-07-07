@@ -68,10 +68,6 @@ class Player{
 	//Avanzar 1 casillero en la direccion correcta
 	method avanzarCasillero() {
 		position = dir.seguirCamino()
-//		position = if (position.y() == 0 and position.x() > 0) position.left(1)
-//		else if (position.x() == 0 and position.y() < game.height()-1) position.up(1)
-//		else if (position.y() == game.height()-1 and position.x() < game.width()-1) position.right(1)
-//		else position.down(1)
 		game.sound("sounds/paso.mp3").play()
 	}
 	
