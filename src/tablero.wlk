@@ -79,7 +79,7 @@ object tablero{
 }
 
 class Dado inherits Visual{
-	const property valor = 4//[1,2,3,4,5,6].anyOne()
+	const property valor = 6//[1,2,3,4,5,6].anyOne()
 	
 	override method position() = game.at(4,1)
 	override method image() = "dados/dado" + valor.toString() + ".png"

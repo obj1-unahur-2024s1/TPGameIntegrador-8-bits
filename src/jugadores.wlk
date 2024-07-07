@@ -67,10 +67,11 @@ class Player{
 
 	//Avanzar 1 casillero en la direccion correcta
 	method avanzarCasillero() {
-		position = if (position.y() == 0 and position.x() > 0) position.left(1)
-		else if (position.x() == 0 and position.y() < game.height()-1) position.up(1)
-		else if (position.y() == game.height()-1 and position.x() < game.width()-1) position.right(1)
-		else position.down(1)
+		position = dir.seguirCamino()
+//		position = if (position.y() == 0 and position.x() > 0) position.left(1)
+//		else if (position.x() == 0 and position.y() < game.height()-1) position.up(1)
+//		else if (position.y() == game.height()-1 and position.x() < game.width()-1) position.right(1)
+//		else position.down(1)
 		game.sound("sounds/paso.mp3").play()
 	}
 	
@@ -367,4 +368,16 @@ class Player{
 			marcador => game.removeVisual(marcador) 
 		})
 	}
+}
+
+object dir{
+	method seguirCamino() =
+		if (self.oeste()) turno.playerOnTurn().position().left(1)
+		else if (self.norte()) turno.playerOnTurn().position().up(1)
+		else if (self.este()) turno.playerOnTurn().position().right(1)
+		else turno.playerOnTurn().position().down(1)
+	
+	method oeste() = turno.playerOnTurn().position().y() == 0 and turno.playerOnTurn().position().x() > 0
+	method norte() = turno.playerOnTurn().position().x() == 0 and turno.playerOnTurn().position().y() < game.height()-1
+	method este() = turno.playerOnTurn().position().y() == game.height()-1 and turno.playerOnTurn().position().x() < game.width()-1
 }
