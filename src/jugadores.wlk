@@ -77,7 +77,7 @@ class Player{
 	
 	method reaccionarACasillero(){
 		//Si es casilla especial se activa.
-		self.currentLocation().reaccionarACasillero()
+		self.currentLocation().activarCasillero()
 		//Evaluá Condicion de Victoria o Derrota
 		self.condicionVictoriaODerrota()
 	}

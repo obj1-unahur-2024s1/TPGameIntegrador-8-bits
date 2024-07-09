@@ -13,7 +13,7 @@ object tablero{
 	const property instrucciones2 = new Instrucciones(img = "popups/instrucciones2.png")
 	const property teclas = new Instrucciones(img = "popups/teclas.png")
 	const property teclaInstrucciones = new Visual(position=game.at(3,1),img="UI/teclaInstrucciones.png")
-	
+
 	method generarTablero(){
 		//Elimina el Menu de Inicio
 		song.menu().stop()
@@ -78,7 +78,7 @@ object tablero{
 }
 
 class Dado inherits Visual{
-	const property valor = 4//[1,2,3,4,5,6].anyOne()
+	const property valor = [1,2,3,4,5,6].anyOne()
 	
 	override method position() = game.at(4,1)
 	override method image() = "dados/dado" + valor.toString() + ".png"
